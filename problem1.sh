@@ -11,8 +11,8 @@ for loop start:
 #2 - length
 	get length of line -> float(len(line))
 #3 - percent GC
-	count Gs
-	count Cs
+	count Gs -> line.count("G") [store as a variable. do not need to convert to float.]
+	count Cs -> line.count("C")
 	calc percent GC (#G+#C/length)
 #4 - melting temperature
 	if length <= 14
