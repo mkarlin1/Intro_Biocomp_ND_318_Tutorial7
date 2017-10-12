@@ -17,3 +17,29 @@ data3 = pandas.DataFrame(list(zip(north,east,south,west)),columns=['north','east
 InFile.close()
 seqDF.hist(column=[1])
 seqDF.hist(column=[2])
+
+#some thoughts on the pseudocode
+os.listdir('.')
+os.chdir('./Desktop/tutorial/Intro_Biocomp_ND_318_Tutorial7/')
+import pandas
+import numpy
+InFile3=pandas.read_csv('data.txt')
+north=[]
+east=[]
+south=[]
+west=[]
+for Line in InFile3:
+		if 'north' in Line:
+			north.append([1:])
+		elif 'east' in Line:
+		    east.append(Line[1:])
+		elif 'south' in Line:
+		    south.append(Line[1:])
+		elif 'west' in Line:
+		    west.append(Line[1:])
+
+data3 = pandas.DataFrame(list(zip(north, east, south, 
+west)),columns=['north','east','south','west'])
+
+#to close the file
+InFile3.close()
