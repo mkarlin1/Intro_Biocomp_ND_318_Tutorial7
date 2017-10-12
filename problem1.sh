@@ -43,6 +43,10 @@ seqDF = pandas.DataFrame(list(zip(sequenceID,sequenceLength,percentGC,meltingTem
 #to close the file
 InFile.close()
 
+#to create the histograms
+seqDF.hist(column=[1])
+seqDF.hist(column=[2])
+
 #ADDITIONAL NOTES
 #OutFile = open("filename", 'w')
 #InFile.close()
