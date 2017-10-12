@@ -1,0 +1,14 @@
+import pandas
+import numpy
+import matplotlib.pyplot as plt
+File2=pandas.read_csv('heightVSweight.csv')
+data2 = File2[['Height(Inches)', 'Weight(Pounds)']]
+x = data2['Height(Inches)']
+y = data2['Weight(Pounds)']
+plt.scatter(x,y)
+
+z = numpy.polyfit(x, y, 1)
+p = numpy.poly1d(z)
+plt.plot(x,p(x),"r--")
+
+plt.show()
