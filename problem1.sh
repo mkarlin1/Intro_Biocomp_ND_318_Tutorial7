@@ -1,38 +1,55 @@
 #import packages
-
+import pandas
 #read in fasta file
-InFile = open("filename", [arguments]) 'r'-> read, 'w'->write
-	#makes a list where each element is a new line
+InFile = open("Lecture11.fasta", "r")
+#make a list where each element is a new line
+#plan for storing info
+sequenceID=[]
+sequenceLength=[]
+percentGC=[]
+meltingTemp=[]
 #to loop over each line:
-	for line in InFile:
-		line=line.strip() #default is '/n', so we can leave () empty
+	for Line in InFile:
+		Line=Line.strip()
+		#default is '/n', so we can leave () empty
+		
+		if '>' in Line:
+			#capture sequence ID
+			sequenceID.append(Line[1:])
+		else
+			#it is a sequence line, so we want all the additonal info
+			
+			#to capture sequence length
+			seqLen=float(len(Line))
+			
+			#to count the number of G's and C's
+			nG=Line.count("G")
+			nC=Line.count("C")
+			
+			#to calculate the melting temperature
+			if seqLen<=14:
+				Tm=2*(nG+nC)+2*seqLen
+			else:
+				Tm=-9999
+				
+			#to append the calculated values to the lists
+			sequenceLength.append(seqLen)
+			percentGC.append((nG+nC)/seqLen*100)
+			meltingTemp.append(Tm)
+			
+#to combine the lists to one dataframe
+seqDF = pandas.DataFrame(list(zip(sequenceID,sequenceLength,percentGC,meltingTemp)),columns=['sequenceID','sequenceLength','percentGC','meltingTemp'])
+
+#to close the file
+InFile.close()
+
+#ADDITIONAL NOTES
 #OutFile = open("filename", 'w')
 #InFile.close()
 #OutFile.close()
 
 #making lists
-L1 = []
-	#do some stuff that generates results
-L1.append(result)
+#L1 = []
+#do some stuff that generates results
+#L1.append(result)
 
-#plan for storing info
-
-for loop start:
-#1 - Sequence ID	
-	if ">" in line
-		capture sequence IF
-	else
-		next line
-#2 - length
-	get length of line -> float(len(line))
-#3 - percent GC
-	count Gs -> line.count("G") [store as a variable. do not need to convert to float.]
-	count Cs -> line.count("C")
-	calc percent GC (#G+#C/length)
-#4 - melting temperature
-	if length <= 14
-		calc melt temp
-	else
-		-9999
-
-summarize the stored info
