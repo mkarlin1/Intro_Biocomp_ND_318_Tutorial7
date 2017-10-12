@@ -1,0 +1,19 @@
+import pandas
+InFile=pandas.read_csv('data.txt')
+north=[]
+east=[]
+south=[]
+west=[]
+for Line in InFile:
+    if 'north' in Line:
+        north.append(Line[1:])
+    elif 'east' in Line:
+        east.append(Line[1:])
+    elif 'south' in Line:
+        south.append(Line[1:])
+    elif 'west' in Line:
+        west.append(Line[1:])
+data3 = pandas.DataFrame(list(zip(north,east,south,west)),columns=['north','east','south','west'])
+InFile.close()
+seqDF.hist(column=[1])
+seqDF.hist(column=[2])
