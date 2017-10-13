@@ -1,19 +1,29 @@
 import pandas
-InFile=pandas.read_csv('data.txt')
-north=[]
-east=[]
-south=[]
-west=[]
-for Line in InFile:
-    if 'north' in Line:
-        north.append(Line[1:])
-    elif 'east' in Line:
-        east.append(Line[1:])
-    elif 'south' in Line:
-        south.append(Line[1:])
-    elif 'west' in Line:
-        west.append(Line[1:])
-data3 = pandas.DataFrame(list(zip(north,east,south,west)),columns=['north','east','south','west'])
-InFile.close()
-seqDF.hist(column=[1])
-seqDF.hist(column=[2])
+import matplotlib.pyplot
+import numpy
+InFile3=pandas.read_csv('data.txt')
+north = InFile3[InFile3.region=='north']
+east = InFile3[InFile3.region=='east']
+south = InFile3[InFile3.region=='south']
+west = InFile3[InFile3.region=='west']
+mean_values=[north["observations"].mean(), east["observations"].mean(), 
+south["observations"].mean(), west["observations"].mean()]
+bar_labels = ['North', 'East', 'South', 'West']
+x_pos = list(range(len(bar_labels)))
+matplotlib.pyplot.bar(x_pos, mean_values, align='center')
+matplotlib.pyplot.xticks(x_pos, bar_labels)
+
+import numpy
+import pandas
+from plotnine import *
+data3=pandas.read_csv("data.txt", sep="\n", header=1)
+data3.shape
+data3.head(4001)
+a=ggplot(data3,aes(x="'region'",y="'observations'"))
+a+geom_point()+coord_cartesian()
+a+geom_point()+coord_cartesian()+theme_bw()
+a+geom_point()+coord_cartesian()+theme_classic()
+a+geom_jitter(data3)
+
+
+
