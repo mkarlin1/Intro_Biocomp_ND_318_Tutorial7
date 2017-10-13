@@ -12,6 +12,7 @@ bar_labels = ['North', 'East', 'South', 'West']
 x_pos = list(range(len(bar_labels)))
 matplotlib.pyplot.bar(x_pos, mean_values, align='center')
 matplotlib.pyplot.xticks(x_pos, bar_labels)
+<<<<<<< HEAD
 
 import numpy
 import pandas
@@ -27,3 +28,5 @@ a+geom_jitter(data3)
 
 
 
+=======
+>>>>>>> d2d0e37e0c849e7a420d3158a993027843b6265a
